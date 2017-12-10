@@ -8,15 +8,18 @@ repositories {
 }
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "com.google.firebase.udacity.friendlychat"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+
+        // Firebase - Resources
+        resConfigs "auto"
     }
     buildTypes {
         release {
@@ -29,15 +32,43 @@ android {
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.android.support:appcompat-v7:24.2.0'
-
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
     // Displaying images
-    compile 'com.github.bumptech.glide:glide:3.6.1'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    ext.firebaseVersion = '11.4.2'
+    ext.firebaseUiVersion = '3.1.0'     // Linked to firebaseVersion
+
+    // Firebase - Real Time Database
+    compile "com.google.firebase:firebase-database:$firebaseVersion"
+
+    // Firebase - Auth
+    compile "com.google.firebase:firebase-auth:$firebaseVersion"
+
+    // Firebase - Storage
+    compile "com.google.firebase:firebase-storage:$firebaseVersion"
+
+    // Firebase - Messaging
+    compile "com.google.firebase:firebase-messaging:$firebaseVersion"
+
+    // Firebase - Remote Config
+    compile "com.google.firebase:firebase-config:$firebaseVersion"
+
+    // Firebase - Firebase UI - Auth
+    compile "com.firebaseui:firebase-ui-auth:$firebaseUiVersion"
+
+
 }
+
+// Firebase
+apply plugin: 'com.google.gms.google-services'
